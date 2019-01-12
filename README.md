@@ -14,4 +14,4 @@ npm install
 npm run devstart
 ```
 
-open http://localgost:3000/
+open http://localhost:3000/
