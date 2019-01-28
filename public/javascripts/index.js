@@ -19,7 +19,7 @@ function getNewRow() {
 
 function displayContacts(contacts){
     var rows = contacts.map(function(contact) {
-       console.log('transform contact', contact);
+       //console.log('transform contact', contact);
        return `<tr>
             <td>${contact.firstName}</td>
             <td>${contact.lastName}</td>
@@ -57,11 +57,10 @@ function initEvents() {
 }
 
 function doSearch(ev) {
-    var value = this.value;
+    var value = this.value.toLowerCase();
 
     var filteredContacts = globalContacts.filter(function(contact){
-        console.log(contact.firstName, value);
-        return contact.firstName == value;
+        return contact.firstName.toLowerCase().includes(value);
     });
 
     displayContacts(filteredContacts);
