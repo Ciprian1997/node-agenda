@@ -56,9 +56,15 @@ function initEvents() {
     document.getElementById('search').addEventListener('input', doSearch);
 }
 
-function doSearch() {
+function doSearch(ev) {
     var value = this.value;
-    console.warn('please search', value);
+
+    var filteredContacts = globalContacts.filter(function(contact){
+        console.log(contact.firstName, value);
+        return contact.firstName == value;
+    });
+
+    displayContacts(filteredContacts);
 }
 
 
