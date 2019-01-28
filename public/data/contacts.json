@@ -1,12 +1,19 @@
 [
-    {
-        "firstName": "Ciprian",
-        "lastName": "Andrei",
-        "phone": "072341415"
-    },
-    {
-        "firstName": "Cristian",
-        "lastName": "Sergiu",
-        "phone": "072316442"
-    }
+  {
+    "firstName": "Cristian",
+    "lastName": "Sergiu",
+    "phone": "072316442"
+  }
+  ,
+  {
+    "firstName": "Ciprian",
+    "lastName": "Cosmin",
+    "phone": "0723153222"
+  }
+  ,
+  {
+    "firstName": "Andreea",
+    "lastName": "Nicol",
+    "phone": "072316562"
+  }
 ]
