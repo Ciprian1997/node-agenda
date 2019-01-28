@@ -59,13 +59,14 @@ function initEvents() {
 function doSearch(ev) {
     var value = this.value.toLowerCase();
 
-    var filteredContacts = globalContacts.filter(function(contact){
-        return contact.firstName.toLowerCase().includes(value);
+    var filteredContacts = globalContacts.filter(function (contact) {
+        return contact.firstName.toLowerCase().includes(value) || 
+            contact.lastName.toLowerCase().includes(value) ||
+            contact.phone.toLowerCase().includes(value);
     });
 
     displayContacts(filteredContacts);
 }
-
 
 // - start app
 
