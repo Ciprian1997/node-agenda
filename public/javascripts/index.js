@@ -17,6 +17,22 @@ function getNewRow() {
        </tr>`;
 }
 
+function saveContact() {
+    var firstName = document.querySelector('input[name=firstName]').value
+    var lastName = $('input[name=lastName]').val();
+    var phone = $('input[name=phone]').val();
+    $.post('contacts/create', {
+        firstName, // shortcut from ES6
+        lastName,
+        phone: phone // ES5 (key = value )
+    }).done(function(response){
+        if (response.success) {
+            loadContacts();
+        }
+    });
+}
+
+
 function displayContacts(contacts){
     var rows = contacts.map(function(contact) {
        //console.log('transform contact', contact);
@@ -32,7 +48,7 @@ function displayContacts(contacts){
     });
     
 
-    //rows.push(getNewRow());
+    rows.push(getNewRow());
     var action = getNewRow();
     //rows.push(actions);
 

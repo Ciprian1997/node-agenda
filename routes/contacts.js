@@ -42,7 +42,7 @@ router.post('/create', function(req, res, next) {
 });
 
   content = JSON.stringify(contacts, null, 2)
-  fs.writeFileSync('public/data/contacts.json', content );
+  fs.writeFileSync('public/data/contacts.json', content);
 
   res.json({success: true});
 });
