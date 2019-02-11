@@ -1,26 +1,19 @@
 var phonetoEdit = '';
 
 function loadContacts() {
-    $.ajax('data/contacts.json').done(function(contacts){
+    $.ajax('contacts').done(function(contacts){
         console.info('contacts loaded', contacts);
         window.globalContacts = contacts;
         displayContacts(contacts);
     });
 }
 
-function getNewRow() {
-    return `<tr>
-            <td><input type='text' name="firstName" placeholder="First Name"/></td>
-            <td><input type='text' name="lastName" placeholder="Last Name"/></td>
-            <td><input type='text' name="phone" placeholder="Phone"/></td>
-            <td><button onClick="saveContact()">Save</button></td>
-       </tr>`;
-}
-
 function saveContact() {
     var firstName = document.querySelector('input[name=firstName]').value
     var lastName = $('input[name=lastName]').val();
     var phone = $('input[name=phone]').val();
+
+    var actionUrl = phonetoEdit ? 'contacts/update?id=' + phonetoEdit : 'contacts/create';
     $.post('contacts/create', {
         firstName, // shortcut from ES6
         lastName,
@@ -41,16 +34,12 @@ function displayContacts(contacts){
             <td>${contact.lastName}</td>
             <td>${contact.phone}</td>
             <td>
-                <a href="/contacts/delete?phone=${contact.phone}">&#10006;</a>
-                <a href="#" class="edit" data-id="${contact.phone}">&#9998;</a>
+                <a href="/contacts/delete?id=${contact.id}">&#10006;</a>
+                <a href="#" class="edit" data-id="${contact.id}">&#9998;</a>
             </td>
        </tr>`; 
     });
     
-
-    rows.push(getNewRow());
-    var action = getNewRow();
-    //rows.push(actions);
 
     document.querySelector('tbody').innerHTML = rows.join('');
 }
@@ -60,7 +49,7 @@ function initEvents() {
         phonetoEdit = this.getAttribute('data-id');
 
         var contact = globalContacts.find(function(contact){
-            return contact.phone == phonetoEdit;
+            return contact.id == phonetoEdit;
         })
         $('input[name=phone]').val(phonetoEdit);
 
